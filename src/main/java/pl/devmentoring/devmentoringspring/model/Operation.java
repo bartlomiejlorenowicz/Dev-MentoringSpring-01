@@ -1,5 +1,5 @@
 package pl.devmentoring.devmentoringspring.model;
 
 public enum Operation {
-    ADD, ODD, MUL, DIV
+    ADD, SUB, MUL, DIV
 }

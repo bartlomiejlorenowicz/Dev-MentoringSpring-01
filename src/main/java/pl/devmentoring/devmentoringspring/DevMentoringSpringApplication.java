@@ -8,6 +8,7 @@ public class DevMentoringSpringApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DevMentoringSpringApplication.class, args);
+
     }
 
 }
