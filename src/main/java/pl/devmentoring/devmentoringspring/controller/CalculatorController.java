@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.devmentoring.devmentoringspring.model.Calculation;
 import pl.devmentoring.devmentoringspring.model.CalculationStrategy;
 import pl.devmentoring.devmentoringspring.model.Operation;
 import pl.devmentoring.devmentoringspring.service.CalculationService;
@@ -27,13 +28,9 @@ public class CalculatorController {
                          @RequestParam int a,
                          @RequestParam int b) {
         logger.info("Received request to calculate: operation={}, a={}, b={}", operation, a, b);
-        CalculationStrategy strategy = calculationService.getCalculationStrategyMap().get(operation);
-        if (strategy != null) {
-            int result = strategy.execute(a, b);
-            logger.info("Operation: {} a: {}, b: {}, result: {}", operation, a, b, result);
-            return result;
-        } else {
-            throw new IllegalArgumentException("Invalid operation: " + operation);
-        }
+        int result = calculationService.operationResult(new Calculation(a, b,operation));
+        logger.info("Operation: {} a: {}, b: {}, result: {}", operation, a, b, result);
+        return result;
     }
 }
+
